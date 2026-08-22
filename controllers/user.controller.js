@@ -12,7 +12,7 @@ export const register = async (req , res) => {
         if(!fullname || !email || !phoneNumber || !password || !role) {
             return res.status(400).json({ 
                 message: "something is missing",
-                succsess: false
+                success: false
 
              });
         };
