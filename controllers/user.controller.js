@@ -43,6 +43,7 @@ export const register = async (req , res) => {
         return res.status(201).json({
             message: "Account created sucessfully",
             success: true
+
         });
 
     } catch (error) {
@@ -96,7 +97,7 @@ export const login = async (req , res) => {
             profile: user.profile
         }
 
-        return res.status(200).cookie("token", token, {maxAge:1*24*60*60*1000, httpOnly: true, sameSite :'strict'}).json({
+        return res.status(200).cookie("token", token, {maxAge:1*24*60*60*1000, httpOnly: true, sameSite :'none',secure: true,}).json({
             message: `welcome back ${user.fullname}`,
             user,
             success: true,
