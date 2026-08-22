@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
+import { secureHeapUsed } from "crypto";
 
 
 export const register = async (req , res) => {
@@ -85,7 +86,7 @@ export const login = async (req , res) => {
         const tokenData = {
             userId: user._id,
         }
-        const token =await jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
+        const token = jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: '1d' });
 
         user = {
             _id: user._id,
@@ -96,7 +97,7 @@ export const login = async (req , res) => {
             profile: user.profile
         }
 
-        return res.status(200).cookie("token", token, {maxAge:1*24*60*60*1000, httpOnly: true, sameSite :'strict'}).json({
+        return res.status(200).cookie("token", token, {maxAge:1*24*60*60*1000, httpOnly: true,secure: true, sameSite :'none'}).json({
             message: `welcome back ${user.fullname}`,
             user,
             success: true,
