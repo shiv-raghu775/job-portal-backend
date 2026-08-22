@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-    origin: ["http://localhost:5173", "http://localhost:5174"], // Update with your frontend URL
+    origin: ["http://localhost:5173", "http://localhost:5174","https://job-portal-frontend-hazel.vercel.app"], // Update with your frontend URL
     credentials: true, // Allow cookies to be sent
 };
 app.use(cors(corsOptions));   
