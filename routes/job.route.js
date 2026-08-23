@@ -5,8 +5,8 @@ import  isAuthenticated from '../middlewares/isAuthenticated.js';
 const router = express.Router();
 
 router.route('/post').post(isAuthenticated, postJob);
-router.route('/getAll').get(isAuthenticated, getAllJobs);
-router.route('/getById/:id').get(isAuthenticated, getJobById);
+router.route('/getAll').get(getAllJobs);
+router.route('/getById/:id').get(getJobById);
 router.route('/getAdminJobs').get(isAuthenticated, getAdminJobs);
 
 export default router;
